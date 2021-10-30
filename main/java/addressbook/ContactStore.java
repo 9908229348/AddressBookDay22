@@ -22,7 +22,7 @@ public class ContactStore {
             if (addressBook.getFirstName().equalsIgnoreCase(name)) {
                 boolean check = true;
                 while (check) {
-                    System.out.println("Edit Options 1.firstName 2.lastName 3.address 4.city 5.state 6.zip 7.phonenumber 8.email 9.exit");
+                    System.out.println("Edit Options 1.firstName\n 2.lastName\n 3.address\n 4.city\n 5.state\n 6.zip\n 7.phonenumber\n 8.email\n 9.exit");
                     int choice = scanner.nextInt();
                     scanner.nextLine();
                     switch (choice) {
