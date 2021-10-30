@@ -72,4 +72,14 @@ public class ContactStore {
             }
         }
     }
+
+    public void remove() {
+        System.out.println("Enter name of contact you want to sell");
+        String name = scanner.nextLine();
+        for (int i = 0; i < contactList.size(); i++) {
+            if (contactList.get(i).getFirstName().equalsIgnoreCase(name)) {
+                contactList.remove(contactList.get(i));
+            }
+        }
+    }
 }

@@ -3,7 +3,6 @@ package addressbook;
 public class AddressBook {
     private String firstName, lastName, address, city, state, zip, phoneNumber, email;
 
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
