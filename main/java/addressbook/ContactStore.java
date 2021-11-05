@@ -121,7 +121,6 @@ public class ContactStore extends AddressBook {
             long count = dictionary.get(i).stream().filter(s -> s.getState().equalsIgnoreCase(state)).count();
             count1 = count1 + count;
         }
-        System.out.println(count1);
         System.out.println("No.of Persons in State " + state + " are " + count1);
         System.out.println("Persons with City name :" + city);
         for (int i = 1; i <= dictionary.size(); i++){
@@ -131,5 +130,12 @@ public class ContactStore extends AddressBook {
             count2 = count2 + count;
         }
         System.out.println("No.of persons in City " + city + " are " + count2);
+    }
+
+    public static void sort(Hashtable<Integer,ArrayList<ContactStore>> dictionary){
+        for (int i = 1; i <= dictionary.size(); i++){
+            List<ContactStore> list = dictionary.get(i).stream().sorted(Comparator.comparing(AddressBook::getFirstName)).collect(Collectors.toList());
+            System.out.println(list);
+        }
     }
 }
