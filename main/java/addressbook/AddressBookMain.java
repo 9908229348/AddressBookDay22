@@ -36,7 +36,11 @@ public class AddressBookMain {
         }
         System.out.println(dictionary);
         ContactStore.search(dictionary);
-        System.out.println("AddressBooks after Sorting :");
-        ContactStore.sort(dictionary);
+        System.out.println("AddressBooks after Sorting based on FirstName:");
+        ContactStore.sortByFirstName(dictionary);
+        System.out.println("AddressBooks Sorted based on City :");
+        ContactStore.sortByCity(dictionary);
+        System.out.println("AddressBooks Sorted based on State :");
+        ContactStore.sortByState(dictionary);
     }
 }

@@ -132,9 +132,23 @@ public class ContactStore extends AddressBook {
         System.out.println("No.of persons in City " + city + " are " + count2);
     }
 
-    public static void sort(Hashtable<Integer,ArrayList<ContactStore>> dictionary){
+    public static void sortByFirstName(Hashtable<Integer,ArrayList<ContactStore>> dictionary){
         for (int i = 1; i <= dictionary.size(); i++){
             List<ContactStore> list = dictionary.get(i).stream().sorted(Comparator.comparing(AddressBook::getFirstName)).collect(Collectors.toList());
+            System.out.println(list);
+        }
+    }
+
+    public static void sortByCity(Hashtable<Integer, ArrayList<ContactStore>> dictionary){
+        for (int i = 1; i <= dictionary.size(); i++){
+            List<ContactStore> list = dictionary.get(i).stream().sorted(Comparator.comparing(AddressBook::getCity)).collect(Collectors.toList());
+            System.out.println(list);
+        }
+    }
+
+    public static void sortByState(Hashtable<Integer, ArrayList<ContactStore>> dictionary){
+        for (int i = 1; i <= dictionary.size(); i++){
+            List<ContactStore> list = dictionary.get(i).stream().sorted(Comparator.comparing(AddressBook::getState)).collect(Collectors.toList());
             System.out.println(list);
         }
     }
