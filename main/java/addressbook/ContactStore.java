@@ -110,9 +110,17 @@ public class ContactStore extends AddressBook {
         System.out.println("Enter state name");
         Scanner scanner = new Scanner(System.in);
         String state = scanner.nextLine();
+        System.out.println("Enter city name");
+        String city = scanner.nextLine();
+        System.out.println("Persons with State name :" + state);
+        for (int i = 1; i <= dictionary.size(); i++) {
+            List<ContactStore> personWithState = dictionary.get(i).stream().filter(s -> s.getState().equalsIgnoreCase(state)).collect(Collectors.toList());
+            System.out.println(personWithState);
+        }
+        System.out.println("Persons with City name :" + city);
         for (int i = 1; i <= dictionary.size(); i++){
-            List<ContactStore> person = dictionary.get(i).stream().filter(s -> s.getState().equalsIgnoreCase(state)).collect(Collectors.toList());
-            System.out.println(person);
+            List<ContactStore> personWithCity = dictionary.get(i).stream().filter(c -> c.getCity().equalsIgnoreCase(city)).collect(Collectors.toList());
+            System.out.println(personWithCity);
         }
     }
 }
