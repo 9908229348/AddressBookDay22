@@ -1,6 +1,7 @@
 package addressbook;
 
-import java.io.*;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -153,7 +154,7 @@ public class ContactStore extends AddressBook {
         }
     }
 
-    public static void writeToFile(ArrayList<ContactStore> addressBook) {
+    public static void writeToFile(Hashtable<Integer, ArrayList<ContactStore>> addressBook) {
         try{
             FileWriter fileWriter = new FileWriter("AddressBook.txt");
             String stream = String.valueOf(addressBook);

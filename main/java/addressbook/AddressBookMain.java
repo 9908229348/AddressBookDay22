@@ -34,10 +34,10 @@ public class AddressBookMain {
                 }
             }
             dictionary.put(i, arrayList);
-            ContactStore.writeToFile(arrayList);
         }
         System.out.println(dictionary);
-        System.out.println("Reading AddressBook from File");
+        ContactStore.writeToFile(dictionary);
+        System.out.println("Reading AddressBooks from File");
         ContactStore.readFromFile();
         System.out.println();
         ContactStore.search(dictionary);
