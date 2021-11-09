@@ -1,12 +1,8 @@
 package addressbook;
 
-import com.google.gson.Gson;
-
 import java.io.*;
-import java.lang.reflect.InaccessibleObjectException;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ContactStore extends AddressBook {
     Scanner scanner = new Scanner(System.in);
@@ -166,7 +162,6 @@ public class ContactStore extends AddressBook {
         } catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
     public static void readFromFile(){
