@@ -1,7 +1,9 @@
 package addressbook;
 
-import java.io.FileReader;
-import java.io.FileWriter;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+
+import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -30,56 +32,55 @@ public class ContactStore extends AddressBook {
     public void editDetails(ArrayList<ContactStore> contact) {
         System.out.println("Enter the name to edit");
         String name = scanner.nextLine();
-        for (int i = 0; i < contact.size(); i++) {
-            if (contact.get(i).getFirstName().equals(name)) {
+        for (ContactStore contactStore : contact) {
+            if (contactStore.getFirstName().equals(name)) {
                 boolean check = true;
                 while (check) {
                     System.out.printf("enter 1.First Name\n 2.Last Name\n 3.Address\n 4.City\n 5.State\n 6.PhoneNumber\n 7.PinCode\n 8.Email\n 9.Exit");
                     int choice = scanner.nextInt();
                     scanner.nextLine();
                     switch (choice) {
-                        case 1:
+                        case 1 -> {
                             System.out.println("enter new first name");
                             String firstName = scanner.nextLine();
-                            contact.get(i).setFirstName(firstName);
-                            break;
-                        case 2:
+                            contactStore.setFirstName(firstName);
+                        }
+                        case 2 -> {
                             System.out.println("enter the new Last name");
                             String lastName = scanner.nextLine();
-                            contact.get(i).setLastName(lastName);
-                            break;
-                        case 3:
+                            contactStore.setLastName(lastName);
+                        }
+                        case 3 -> {
                             System.out.println("enter new Address");
                             String address = scanner.nextLine();
-                            contact.get(i).setAddress(address);
-                            break;
-                        case 4:
+                            contactStore.setAddress(address);
+                        }
+                        case 4 -> {
                             System.out.println("enter new City");
                             String city = scanner.nextLine();
-                            contact.get(i).setCity(city);
-                            break;
-                        case 5:
+                            contactStore.setCity(city);
+                        }
+                        case 5 -> {
                             System.out.println("enter new State");
                             String state = scanner.nextLine();
-                            contact.get(i).setState(state);
-                            break;
-                        case 6:
+                            contactStore.setState(state);
+                        }
+                        case 6 -> {
                             System.out.println("enter new PhoneNumber");
                             String phoneNumber = scanner.nextLine();
-                            contact.get(i).setPhoneNumber(phoneNumber);
-                            break;
-                        case 7:
+                            contactStore.setPhoneNumber(phoneNumber);
+                        }
+                        case 7 -> {
                             System.out.println("enter new PinCode");
                             String pin = scanner.nextLine();
-                            contact.get(i).setZip(pin);
-                            break;
-                        case 8:
+                            contactStore.setZip(pin);
+                        }
+                        case 8 -> {
                             System.out.println("enter new Email");
                             String email = scanner.nextLine();
-                            contact.get(i).setEmail(email);
-                            break;
-                        case 9:
-                            check = false;
+                            contactStore.setEmail(email);
+                        }
+                        case 9 -> check = false;
                     }
                 }
 
@@ -171,6 +172,36 @@ public class ContactStore extends AddressBook {
             int i;
             while ((i = fileReader.read()) != -1){
                 System.out.print((char)i);}
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void writeToFileInOpenCsv(ArrayList<ContactStore> addressBook){
+        try{
+            FileWriter fileWriter = new FileWriter("AddressBook.csv");
+            CSVWriter csvWriter = new CSVWriter(fileWriter);
+            String[] array = new String[addressBook.size()];
+            for (int i = 0; i < array.length; i++){
+                array[i] = String.valueOf(addressBook.get(i));
+            }
+            csvWriter.writeNext(array);
+            csvWriter.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void readFromFileInOpenCsv(){
+        try{
+            FileReader fileReader = new FileReader("AddressBook.csv");
+            CSVReader csvReader = new CSVReader(fileReader);
+            String[] strings;
+            while ((strings = csvReader.readNext()) != null){
+                for (String token : strings)
+                    System.out.print(token);
+            }
+            csvReader.close();
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -34,11 +34,15 @@ public class AddressBookMain {
                 }
             }
             dictionary.put(i, arrayList);
+            ContactStore.writeToFileInOpenCsv(arrayList);
         }
         System.out.println(dictionary);
         ContactStore.writeToFile(dictionary);
         System.out.println("Reading AddressBooks from File");
         ContactStore.readFromFile();
+        System.out.println();
+        System.out.println("Reading AddressBook using OpenCSV");
+        ContactStore.readFromFileInOpenCsv();
         System.out.println();
         ContactStore.search(dictionary);
         System.out.println("AddressBooks after Sorting based on FirstName:");
