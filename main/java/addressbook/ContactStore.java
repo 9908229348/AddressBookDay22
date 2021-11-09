@@ -1,5 +1,9 @@
 package addressbook;
 
+import com.google.gson.Gson;
+
+import java.io.*;
+import java.lang.reflect.InaccessibleObjectException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -150,6 +154,29 @@ public class ContactStore extends AddressBook {
         for (int i = 1; i <= dictionary.size(); i++){
             List<ContactStore> list = dictionary.get(i).stream().sorted(Comparator.comparing(AddressBook::getState)).collect(Collectors.toList());
             System.out.println(list);
+        }
+    }
+
+    public static void writeToFile(ArrayList<ContactStore> addressBook) {
+        try{
+            FileWriter fileWriter = new FileWriter("AddressBook.txt");
+            String stream = String.valueOf(addressBook);
+            fileWriter.write(stream);
+            fileWriter.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void readFromFile(){
+        try{
+            FileReader fileReader = new FileReader("AddressBook.txt");
+            int i;
+            while ((i = fileReader.read()) != -1){
+                System.out.print((char)i);}
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

@@ -22,8 +22,9 @@ public class AddressBookMain {
                     case 1 -> {
                         contactStore.setContactDetails();
                         boolean checkDuplicate = contactStore.searchForDuplication(arrayList, contactStore);
-                        if(!checkDuplicate)
+                        if(!checkDuplicate) {
                             arrayList.add(contactStore);
+                        }
                         else
                             System.out.println("Contact already Exists");
                     }
@@ -33,8 +34,12 @@ public class AddressBookMain {
                 }
             }
             dictionary.put(i, arrayList);
+            ContactStore.writeToFile(arrayList);
         }
         System.out.println(dictionary);
+        System.out.println("Reading AddressBook from File");
+        ContactStore.readFromFile();
+        System.out.println();
         ContactStore.search(dictionary);
         System.out.println("AddressBooks after Sorting based on FirstName:");
         ContactStore.sortByFirstName(dictionary);
