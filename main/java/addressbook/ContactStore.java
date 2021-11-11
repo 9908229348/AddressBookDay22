@@ -1,5 +1,6 @@
 package addressbook;
 
+import com.google.gson.Gson;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 
@@ -202,6 +203,29 @@ public class ContactStore extends AddressBook {
                     System.out.print(token);
             }
             csvReader.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void writeToFileInJson(ArrayList<ContactStore> addressBook){
+        try {
+            Gson gson = new Gson();
+            String stream = gson.toJson(addressBook);
+            FileWriter fileWriter = new FileWriter("AddressBook.json");
+            fileWriter.write(stream);
+            fileWriter.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void readFromFileInJson(){
+        try {
+            Gson gson = new Gson();
+            BufferedReader br = new BufferedReader(new FileReader("AddressBook.json"));
+            ArrayList<ContactStore> addressBook = gson.fromJson(br, ArrayList.class);
+            System.out.println(addressBook);
         }catch (Exception e){
             e.printStackTrace();
         }

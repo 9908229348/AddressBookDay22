@@ -35,6 +35,7 @@ public class AddressBookMain {
             }
             dictionary.put(i, arrayList);
             ContactStore.writeToFileInOpenCsv(arrayList);
+            ContactStore.writeToFileInJson(arrayList);
         }
         System.out.println(dictionary);
         ContactStore.writeToFile(dictionary);
@@ -43,6 +44,9 @@ public class AddressBookMain {
         System.out.println();
         System.out.println("Reading AddressBook using OpenCSV");
         ContactStore.readFromFileInOpenCsv();
+        System.out.println();
+        System.out.println("Reading AddressBook using JSON");
+        ContactStore.readFromFileInJson();
         System.out.println();
         ContactStore.search(dictionary);
         System.out.println("AddressBooks after Sorting based on FirstName:");
